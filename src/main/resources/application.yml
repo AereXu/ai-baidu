@@ -1,0 +1,14 @@
+server:
+  port: 18080
+
+spring:
+  profiles:
+    active: local
+  application:
+    name: @project.artifactId@
+  aop:
+    auto: true
+    proxyTargetClass: true
+com:
+  baidu:
+    ai: https://aip.baidubce.com/

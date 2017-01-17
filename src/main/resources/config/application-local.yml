@@ -1,0 +1,14 @@
+
+
+com:
+  aerexu:
+    aibaidu:
+      clientId: ${aibaidu_clientId}
+      clientSecret: ${aibaidu_clientSecret}
+
+
+logging:
+  level:
+    com.qy: DEBUG
+    root: DEBUG
+  path: ./log

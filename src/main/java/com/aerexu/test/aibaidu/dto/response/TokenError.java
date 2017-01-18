@@ -1,4 +1,4 @@
-package com.aerexu.test.aibaidu.dto;
+package com.aerexu.test.aibaidu.dto.response;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;

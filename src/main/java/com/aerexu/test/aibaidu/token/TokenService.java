@@ -1,8 +1,8 @@
 package com.aerexu.test.aibaidu.token;
 
 import com.aerexu.test.aibaidu.client.TokenClient;
-import com.aerexu.test.aibaidu.dto.TokenError;
-import com.aerexu.test.aibaidu.dto.TokenRes;
+import com.aerexu.test.aibaidu.dto.response.TokenError;
+import com.aerexu.test.aibaidu.dto.response.TokenRes;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.ResponseBody;
@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import retrofit2.Call;
 import retrofit2.Response;
 
+import javax.annotation.PostConstruct;
 import java.io.IOException;
 
 /**
@@ -37,6 +38,7 @@ public class TokenService {
     @Autowired
     private TokenClient tokenClient;
 
+    @PostConstruct
     public void run() {
         Call<ResponseBody> call = tokenClient.getToken("client_credentials", clientId, clientSecret);
         try {
@@ -51,7 +53,9 @@ public class TokenService {
         } catch (IOException e) {
             log.error("Network error!", e);
         }
-
     }
 
+    public TokenAdapter getToken(){
+        return new TokenAdapter(tokenRes);
+    }
 }

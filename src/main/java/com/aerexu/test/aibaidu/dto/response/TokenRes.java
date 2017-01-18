@@ -1,5 +1,5 @@
 
-package com.aerexu.test.aibaidu.dto;
+package com.aerexu.test.aibaidu.dto.response;
 
 import javax.annotation.Generated;
 import com.google.gson.annotations.SerializedName;

@@ -20,7 +20,7 @@ import javax.annotation.Generated;
 @RequiredArgsConstructor
 public class WordSegReq {
     @SerializedName("lang_id")
-    private Long langId = 1L;
+    private Integer langId = 1;
     @SerializedName("query")
     @NonNull
     private String query;

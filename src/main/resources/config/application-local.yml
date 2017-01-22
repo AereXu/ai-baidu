@@ -10,5 +10,5 @@ com:
 logging:
   level:
     com.qy: DEBUG
-    root: DEBUG
+    root: INFO
   path: ./log

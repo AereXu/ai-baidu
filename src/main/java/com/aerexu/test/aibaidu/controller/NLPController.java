@@ -49,44 +49,16 @@ public class NLPController {
     private TokenService tokenService;
 
     @Autowired
-    private NLPClientAdapter nlpClient;
-
-    @Autowired
     private WordSegmentClient wordSegmentClient;
 
     @RequestMapping(path = "/wordseg")
     public WordSegmentRes wordSeg(@RequestParam String text) {
-        WordSegmentRes wordSegmentRes = null;
         String accessToken = tokenService.getToken().getAccessToken();
-
-//        AipNlp client = new AipNlp("9200263","9jorfIPAFwmkDSwc4XL5bFEL", "FC9ERKcWtDgjKvQjQuLObkc5cuVi3QBF");
-//        JSONObject response = client.wordseg(text);
-//        wordSegmentRes = new Gson().fromJson(response.toString(),WordSegmentRes.class);
         try {
             return wordSegmentClient.sendAdjusterRequest(accessToken,text);
         } catch (IOException e) {
-            e.printStackTrace();
-            return null;
+            log.error("",e);
+            return new WordSegmentRes();
         }
-//        Call<ResponseBody> call = nlpClient.wordSegment(accessToken, new WordSegReq(StringUtils.trimAllWhitespace(text)));
-//        try {
-//            Response<ResponseBody> execute = call.execute();
-//            if (HttpStatus.valueOf(execute.code()).is2xxSuccessful()) {
-//                try (InputStreamReader reader = new InputStreamReader(execute.body().byteStream(), Charset.forName("GBK"))) {
-//                    wordSegmentRes = new Gson().fromJson(reader, WordSegmentRes.class);
-////                byte[] bytes = ByteArrayUtil.duplicateCertainByte(execute.body().bytes(), (byte) '\\', 0);
-////                try (Reader reader = execute.body().charStream()) {
-////                    wordSegmentRes = new Gson().fromJson(new String(bytes,StandardCharsets.US_ASCII), WordSegmentRes.class);
-////                }
-//                }
-//            } else if (HttpStatus.valueOf(execute.code()).is4xxClientError()
-//                    || HttpStatus.valueOf(execute.code()).is5xxServerError()) {
-//                CommonError commonError = new Gson().fromJson(execute.body().string(), CommonError.class);
-//                log.warn("Error happens of processing wordseg! {}", commonError);
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return wordSegmentRes;
     }
 }
